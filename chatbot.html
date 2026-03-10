@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atención al Cliente</title>
+    <meta name="description" content="Chat de atención al cliente de MikLouds. Resolvemos tus dudas sobre productos, pedidos, reclamos y más.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FFFDD0' stroke='%23556B2F' stroke-width='4'/%3E%3Cpath d='M30 60 Q50 25 70 60' fill='%23556B2F'/%3E%3Cpath d='M25 65 Q50 35 75 65' fill='%238B4513' opacity='0.5'/%3E%3C/svg%3E">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="fondo-animado"></div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="30" cy="30" r="28" fill="#FFFDD0" stroke="#556B2F" stroke-width="2"/>
+                        <ellipse cx="30" cy="34" rx="18" ry="12" fill="#556B2F" opacity="0.9"/>
+                        <ellipse cx="30" cy="32" rx="14" ry="8" fill="#6B8E23"/>
+                        <circle cx="24" cy="28" r="2.5" fill="#FFFDD0"/>
+                        <circle cx="30" cy="26" r="2.5" fill="#FFFDD0"/>
+                        <circle cx="36" cy="28" r="2.5" fill="#FFFDD0"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name">MikLouds</span>
+                    <span class="brand-tagline">Alimentos Naturales</span>
+                </div>
+            </a>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html#productos" class="nav-link">Productos</a></li>
+                    <li><a href="index.html#historia" class="nav-link">Historia</a></li>
+                    <li><a href="index.html#sucursal" class="nav-link">Sucursal</a></li>
+                    <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+                </ul>
+            </nav>
+            
+            <a href="chatbot.html" class="header-cta">
+                <span>💬</span> Atención
+            </a>
+        </div>
+    </header>
+
+    <!-- Chatbot -->
+    <main class="chatbot-container">
+        <div class="chatbot-wrapper">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    🌿
+                </div>
+                <div class="chatbot-header-info">
+                    <h2>Asistente MikLouds</h2>
+                    <p>¡Estoy aquí para ayudarte!</p>
+                </div>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <!-- Los mensajes se agregan dinámicamente -->
+            </div>
+            
+            <div class="chatbot-input-area">
+                <input type="text" id="mensaje-input" placeholder="Escribe tu mensaje...">
+                <button class="btn-enviar-chat" id="btn-enviar" onclick="enviarMensaje()">
+                    ➤
+                </button>
+            </div>
+        </div>
+        
+        <!-- Preguntas frecuentes -->
+        <div style="margin-top: 30px; text-align: center;">
+            <h3 style="color: var(--verde-oscuro); margin-bottom: 15px;">Preguntas Frecuentes</h3>
+            <div class="quick-replies" style="justify-content: center;">
+                <button class="quick-reply" onclick="agregarMensaje('usuario', '¿Qué productos tienen?'); setTimeout(() => procesarRespuesta('¿Qué productos tienen?'), 500);">🌾 Productos</button>
+                <button class="quick-reply" onclick="agregarMensaje('usuario', '¿Cómo hago un pedido?'); setTimeout(() => procesarRespuesta('¿Cómo hago un pedido?'), 500);">🛒 Cómo comprar</button>
+                <button class="quick-reply" onclick="agregarMensaje('usuario', '¿Dónde están ubicados?'); setTimeout(() => procesarRespuesta('¿Dónde están ubicados?'), 500);">📍 Ubicación</button>
+                <button class="quick-reply" onclick="agregarMensaje('usuario', 'Quiero hacer un reclamo'); setTimeout(() => procesarRespuesta('Quiero hacer un reclamo'), 500);">😟 Reclamo</button>
+                <button class="quick-reply" onclick="agregarMensaje('usuario', 'Quiero cancelar un pedido'); setTimeout(() => procesarRespuesta('Quiero cancelar un pedido'), 500);">❌ Cancelar pedido</button>
+                <button class="quick-reply" onclick="agregarMensaje('usuario', 'Mi pedido está demorado'); setTimeout(() => procesarRespuesta('Mi pedido está demorado'), 500);">⏰ Demora</button>
+            </div>
+        </div>
+        
+        <!-- Información de contacto -->
+        <div style="margin-top: 40px; padding: 25px; background: var(--blanco); border-radius: 16px; text-align: center; box-shadow: 0 4px 16px rgba(74, 103, 65, 0.12);">
+            <h3 style="color: var(--verde-oscuro); margin-bottom: 15px;">¿Necesitás más ayuda?</h3>
+            <p style="color: var(--marron); margin-bottom: 20px;">También podés contactarnos directamente por WhatsApp</p>
+            <a href="https://wa.me/5491133333333" target="_blank" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+                💬 Escribinos por WhatsApp
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#FFFDD0" stroke="#556B2F" stroke-width="2"/>
+                            <ellipse cx="20" cy="22" rx="12" ry="8" fill="#556B2F" opacity="0.9"/>
+                            <circle cx="16" cy="19" r="1.5" fill="#FFFDD0"/>
+                            <circle cx="20" cy="17" r="1.5" fill="#FFFDD0"/>
+                            <circle cx="24" cy="19" r="1.5" fill="#FFFDD0"/>
+                        </svg>
+                        <span>MikLouds</span>
+                    </a>
+                    <p class="footer-description">Tu tienda de alimentos naturales. Calidad y salud en cada producto.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navegación</h4>
+                        <ul>
+                            <li><a href="index.html#productos">Productos</a></li>
+                            <li><a href="index.html#historia">Historia</a></li>
+                            <li><a href="index.html#sucursal">Sucursal</a></li>
+                            <li><a href="catalogo.html">Catálogo</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li>📍 Av. Fructuosa Rivera 379</li>
+                            <li>🕘 Lun-Sáb: 9:00 a 20:00</li>
+                            <li>💬 Escribinos por WhatsApp</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 MikLouds. Todos los derechos reservados.</p>
+                <p class="footer-credit">Diseño por <strong>Ag Studio</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="src/js/chatbot.js"></script>
+</body>
+</html>
+
