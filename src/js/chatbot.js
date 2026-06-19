@@ -92,6 +92,7 @@ const mensajesError = {
 
 document.addEventListener('DOMContentLoaded', function() {
     inicializarChatbot();
+    inicializarMenuMovil();
 });
 
 /**
@@ -267,4 +268,47 @@ function ocultarIndicadorEscritura() {
 window.enviarMensaje = enviarMensaje;
 window.procesarRespuesta = procesarRespuesta;
 window.agregarMensaje = agregarMensaje;
+
+/**
+ * Inicializar menú móvil (hamburguesa y drawer)
+ */
+function inicializarMenuMovil() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const body = document.body;
+
+    if (!navToggle || !mainNav) return;
+
+    navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', !isExpanded);
+        mainNav.classList.toggle('active');
+        navToggle.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    const navLinks = mainNav.querySelectorAll('.nav-link, .header-cta-mobile');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navToggle.setAttribute('aria-expanded', 'false');
+            mainNav.classList.remove('active');
+            navToggle.classList.remove('active');
+            body.classList.remove('menu-open');
+        });
+    });
+
+    // Cerrar menú al hacer clic fuera del menú
+    document.addEventListener('click', (e) => {
+        if (mainNav.classList.contains('active') && 
+            !mainNav.contains(e.target) && 
+            !navToggle.contains(e.target)) {
+            navToggle.setAttribute('aria-expanded', 'false');
+            mainNav.classList.remove('active');
+            navToggle.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+    });
+}
 
